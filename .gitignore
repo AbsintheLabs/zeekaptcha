@@ -1,0 +1,23 @@
+# Logs
+logs
+*.log
+
+# Build output
+dist
+# *.js
+# *.d.ts
+*.js.map
+.DS_STORE
+
+# Dependencies
+node_modules
+
+# IDE files
+.vscode
+.idea
+
+# Tests
+__tests__
+coverage
+
+test-app
