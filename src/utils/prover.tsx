@@ -1,10 +1,10 @@
 // Define prover function
 
-import { PlonkProof, PublicSignals, SignalValueType } from 'snarkjs';
-const snarkjs = window.snarkjs;
+import { PlonkProof, PublicSignals, SignalValueType, ZKArtifact } from 'snarkjs';
+const wsnarkjs = window.snarkjs;
 
-const wasmCircuitFilePath = 'preimageInstant.wasm';
-const zkeyFilePath = 'preimageInstant_final.zkey';
+// const wasmCircuitFilePath = 'preimageInstant.wasm';
+// const zkeyFilePath = 'preimageInstant_final.zkey';
 
 import wasmCircuit from "../../assets/preimageInstant.wasm";
 import zkey from "../../assets/preimageInstant_final.zkey";
@@ -14,12 +14,30 @@ export const doProve = async (
   response: SignalValueType,
   provided_hash: string
 ) => {
-  const { proof, publicSignals } = await snarkjs.plonk.fullProve(
+  if (!window.snarkjs) {
+    throw new Error('snarkjs is not loaded yet');
+  }
+  console.log(wasmCircuit)
+  console.log(zkey)
+  const fetchAndDecodeBinary = async (binary: string): Promise<ZKArtifact> => {
+    try {
+      const response = await fetch(`data:application/wasm;base64,${binary}`);
+      const buffer = await response.arrayBuffer();
+      return new Uint8Array(buffer); // This is already a ZKArtifact by your type definition
+    } catch (error) {
+      console.error('Error converting Base64 to Uint8Array', error);
+      return new Uint8Array(); // Return an empty Uint8Array as the fallback
+    }
+  };
+  const decodedWasm = await fetchAndDecodeBinary(wasmCircuit);
+  const decodedZkey = await fetchAndDecodeBinary(zkey);
+  
+  const { proof, publicSignals } = await window.snarkjs.plonk.fullProve(
     { pkey: EOA_Address, response: response, provided_hash: provided_hash },
     // wasmCircuitFilePath,
     // zkeyFilePath
-    wasmCircuit,
-    zkey
+    decodedWasm,
+    decodedZkey
   );
   return { proof, publicSignals };
 };
