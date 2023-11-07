@@ -6,7 +6,7 @@ import { ZkaptchaContext } from '../index';
 import { DEFAULT_CAPTCHA_ENDPOINT } from '../utils/constants';
 import { CaptchaObject } from './CaptchaPopup';
 import absintheLogo from '../../assets/absintheLogo.png';
-import { submitTransaction } from '../utils/transaction';
+import { getEvents, submitTransaction } from '../utils/transaction';
 import { proofToSolidityCalldata } from '../utils/prover';
 
 export enum ValidatorState {

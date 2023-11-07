@@ -3,6 +3,7 @@ import './index.css';
 import Validator, { ValidatorState } from './components/Validator';
 import { ProofResponse, CaptchaObject } from './components/CaptchaPopup';
 import snarkjsencoded from '../assets/snarkjs.min.js';
+export { getEvents } from './utils/transaction';
 
 interface ZkaptchaContextProps {
   validatorState: ValidatorState;

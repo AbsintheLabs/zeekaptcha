@@ -35,21 +35,23 @@ Experience Zeekaptcha in action and claim some free Goerli ETH through our fully
 
 We have a vibrant community of developers helping each other in [our Telegram group](https://t.me/absinthelabs). Join us!
 
-## Quick Start
+<!-- ## Quick Start
 
 Get started with a simple webpage that creates Zeekaptcha attestions by running:
 
 `npx create-zeekaptcha-app`
 
-For a more detailed tutorial, visit our docs [here](todo).
+For a more detailed tutorial, visit our docs [here](todo). -->
 
 ## Install
 
-`npm install @absinthelabs/zeekaptcha`
+`npm i zeekaptcha`
 
-This library allows you to use the `<Zeekaptcha/>` React component to 
+This library allows you to use the `<Zeekaptcha/>` React component to fetch a captcha, prove it, and submit the proof to the Sepolia blockchain.
 
-When using the component, set the chain you want to create attestations in this component parameter: <provide code here>
+To query blockchain events, import the `getEvents(address: string)` function to return the events for a given address. 
+
+<!-- When using the component, set the chain you want to create attestations in this component parameter: <provide code here> -->
 
 ## Documentation
 
