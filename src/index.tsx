@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import './index.css';
 import Validator, { ValidatorState } from './components/Validator';
 import { ProofResponse, CaptchaObject } from './components/CaptchaPopup';
-import snarkjs from '../assets/snarkjs.min.js';
+import snarkjsencoded from '../assets/snarkjs.min.js';
+export { getEvents } from './utils/transaction';
 
 interface ZkaptchaContextProps {
   validatorState: ValidatorState;
@@ -17,13 +18,12 @@ export const ZkaptchaContext = React.createContext<ZkaptchaContextProps>(
   {} as any
 );
 
-const Zeekaptcha = () => {
+const Zeekaptcha: React.FC = () => {
 
   useEffect(() => {
     const script = document.createElement('script');
-    console.log(snarkjs)
-    script.src = snarkjs;
-    script.async = true;
+    const snarkjs = atob(snarkjsencoded)
+    script.textContent = snarkjs;
     
     document.body.appendChild(script);
     
@@ -40,6 +40,7 @@ const Zeekaptcha = () => {
     React.useState<ProofResponse | null>(null);
 
   const [captchaData, setCaptchaData] = React.useState<CaptchaObject | null>(null);
+
   return (
       <ZkaptchaContext.Provider
         value={{

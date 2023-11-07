@@ -1,6 +1,6 @@
 {
   "name": "zeekaptcha",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -11,15 +11,16 @@
     "format": "prettier --write .",
     "check": "prettier --check ."
   },
+  "files": [
+    "dist"
+  ],
   "author": "Graphiti Inc.",
   "license": "ISC",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.5",
     "@rollup/plugin-image": "^3.0.3",
     "@rollup/plugin-json": "^6.0.1",
-    "@rollup/plugin-node-resolve": "^15.2.2",
     "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-url": "^8.0.2",
     "@types/react": "^18.2.25",
     "@types/react-dom": "^18.2.11",
     "@types/snarkjs": "^0.7.6",
@@ -32,6 +33,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "rollup": "^4.0.2",
+    "rollup-plugin-base64": "^1.0.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.36.0",
     "snarkjs": "^0.7.2",

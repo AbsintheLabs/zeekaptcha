@@ -1,0 +1,16 @@
+# Ignore development files
+src/
+rollup.config.js
+.babelrc
+.eslintrc
+node_modules/
+
+# Ignore build output
+dist/
+
+# Ignore test files
+__tests__/
+test/
+tests/
+*.test.js
+*.spec.js
