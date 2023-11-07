@@ -6,6 +6,8 @@ import { ZkaptchaContext } from '../index';
 import { DEFAULT_CAPTCHA_ENDPOINT } from '../utils/constants';
 import { CaptchaObject } from './CaptchaPopup';
 import absintheLogo from '../../assets/absintheLogo.png';
+import { submitTransaction } from '../utils/transaction';
+import { proofToSolidityCalldata } from '../utils/prover';
 
 export enum ValidatorState {
   Loading,
@@ -51,14 +53,14 @@ function Validator() {
           {/* captcha button */}
           {zc.validatorState === ValidatorState.Idle && (
             <>
-                             <button
-                    className="p-3.5 border border-gray-500 bg-gray-50 rounded-sm"
-                    onClick={() => {
-                      fetchCaptcha();
-                      setShowPopup(true);
-                    }}
-                  />
-                  <span>Verify</span>
+              <button
+                className="p-3.5 border border-gray-500 bg-gray-50 rounded-sm"
+                onClick={() => {
+                  fetchCaptcha();
+                  setShowPopup(true);
+                }}
+              />
+              <span>Verify</span>
               {/* disable the button when the button is not connected */}
               {/* {isDisconnected && (
                 <>
@@ -95,9 +97,25 @@ function Validator() {
           {zc.validatorState === ValidatorState.Success && (
             <>
               <ImCheckmark color="#22CA80" />
-              <span>Success!</span>
+              {/* <span>Success!</span> */}
+              <button
+                type="submit"
+                className="group relative w-full flex justify-center py-2 px-2 border border-transparent text-sm font-md rounded-md text-white bg-absinthe-green hover:bg-absinthe-green-dark" 
+                onClick={
+                  () => {
+                    if (zc.proofResponse) {
+                      const { _proof, _pubSignals } = JSON.parse(proofToSolidityCalldata(zc.proofResponse.proof, zc.proofResponse.publicSignals))
+                      submitTransaction(_proof, _pubSignals)
+                    } else {
+                      throw new Error("No proof response")
+                    }
+                  }
+                }
+              >
+              Submit Proof
+              </button>
             </>
-          )}
+          )} 
           {/* error */}
           {zc.validatorState === ValidatorState.Error && (
             <>

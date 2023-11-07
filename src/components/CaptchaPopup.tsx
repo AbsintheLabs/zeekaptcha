@@ -1,6 +1,4 @@
 import React, { useState, useEffect, FormEvent } from 'react';
-// import * as snarkjs from 'snarkjs';
-// const snarkjs = window.snarkjs;
 import { doProve, proofToSolidityCalldata } from '../utils/prover.js';
 import { ethers } from 'ethers';
 import { ValidatorState } from './Validator.js';
@@ -71,6 +69,9 @@ const CaptchaPopup: React.FC<CaptchaPopupProps> = ({
           moddedPreBigInt,
           captchaData?.mimcHash
         );
+        // console.log(proof)
+        // console.log(publicSignals)
+        // console.log(proofToSolidityCalldata(proof, publicSignals))
         // close the popup
         onClose();
         // set the validator state to success

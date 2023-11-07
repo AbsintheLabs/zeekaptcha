@@ -17,15 +17,12 @@ export const ZkaptchaContext = React.createContext<ZkaptchaContextProps>(
   {} as any
 );
 
-const Zeekaptcha = () => {
+const Zeekaptcha: React.FC = () => {
 
   useEffect(() => {
     const script = document.createElement('script');
     const snarkjs = atob(snarkjsencoded)
-    // console.log(snarkjs)
     script.textContent = snarkjs;
-    // script.src = snarkjs;
-    // script.async = true;
     
     document.body.appendChild(script);
     
@@ -43,7 +40,6 @@ const Zeekaptcha = () => {
 
   const [captchaData, setCaptchaData] = React.useState<CaptchaObject | null>(null);
 
-  // const [loadedSnarkjs, setLoadedSnarkjs] = React.useState(null);
   return (
       <ZkaptchaContext.Provider
         value={{

@@ -39,8 +39,8 @@ export default {
     postcss({
       plugins: [],
       minimize: true,
-    }), 
+    }), terser()
   ],
 // fixme: add the other peer dependencies here
-  external: ["react", "react-dom"],
+  external: ["react", "react-dom", "ethers"],
 };
