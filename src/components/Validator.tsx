@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Spinner from './Spinner';
 import { ImCheckmark, ImCross } from 'react-icons/im';
 import CaptchaPopup from './CaptchaPopup';
-import { ZkaptchaContext } from '../index';
+import ZkaptchaContext from './ZkaptchaContext';
 import { DEFAULT_CAPTCHA_ENDPOINT } from '../utils/constants';
 import { CaptchaObject } from './CaptchaPopup';
 import absintheLogo from '../../assets/absintheLogo.png';

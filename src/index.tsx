@@ -4,19 +4,7 @@ import Validator, { ValidatorState } from './components/Validator';
 import { ProofResponse, CaptchaObject } from './components/CaptchaPopup';
 import snarkjsencoded from '../assets/snarkjs.min.js';
 export { getEvents } from './utils/transaction';
-
-interface ZkaptchaContextProps {
-  validatorState: ValidatorState;
-  setValidatorState: React.Dispatch<React.SetStateAction<ValidatorState>>;
-  proofResponse: ProofResponse | null;
-  setProofResponse: React.Dispatch<React.SetStateAction<ProofResponse | null>>;
-  captchaData: CaptchaObject | null;
-  setCaptchaData: React.Dispatch<React.SetStateAction<CaptchaObject | null>>;
-}
-
-const ZkaptchaContext = React.createContext<ZkaptchaContextProps>(
-  {} as any
-);
+import ZkaptchaContext from './components/ZkaptchaContext';
 
 const Zeekaptcha: React.FC = () => {
 
