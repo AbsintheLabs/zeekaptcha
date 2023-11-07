@@ -41,7 +41,7 @@ Get started with a simple webpage that creates Zeekaptcha attestions by running:
 
 `npx create-zeekaptcha-app`
 
-For a more detailed tutorial, visit our docs [here](https://absinthelabs.gitbook.io/zeekaptcha/).
+For a more detailed tutorial, visit our docs [here](https://absinthelabs.gitbook.io/zeekaptcha/). -->
 
 ## Install
 
