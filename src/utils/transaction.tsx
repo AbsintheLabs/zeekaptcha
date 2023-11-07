@@ -27,23 +27,23 @@ export const submitTransaction = async (_proof: string[], _pubSignals: string[])
 }
 
 export const getEvents = async (address: string) => {
-    const contractAddress = ZEEKAPTCHA_CHAIN_CONSTANTS.sepolia.address
-    const abi = ZEEKAPTCHA_CHAIN_CONSTANTS.sepolia.abi
-    if ((window as any).ethereum) {
-        (window as any).ethereum.request({ method: 'eth_requestAccounts' })
-            .then(async () => {
-                const provider = new ethers.BrowserProvider((window as any).ethereum)
-                const signer = await provider.getSigner();
-                const contract = new ethers.Contract(contractAddress, abi, signer)
-                console.log(address)
-                const filter = contract.filters.CaptchaCompleted(address);
-                const events = await contract.queryFilter(filter);
-                return events;
-            })
-            .catch((error: any) => {
-                console.error(error);
-            });
-    } else {
+    const contractAddress = ZEEKAPTCHA_CHAIN_CONSTANTS.sepolia.address;
+    const abi = ZEEKAPTCHA_CHAIN_CONSTANTS.sepolia.abi;
+
+    if (!(window as any).ethereum) {
         throw new Error('window.ethereum not found');
     }
-}
+
+    try {
+        await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
+        const provider = new ethers.BrowserProvider((window as any).ethereum);
+        const signer = await provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, abi, signer);
+        const filter = contract.filters.CaptchaCompleted(address);
+        const events = await contract.queryFilter(filter);
+        return events;
+    } catch (error) {
+        console.error(error);
+        throw error; 
+    }
+};

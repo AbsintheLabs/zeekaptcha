@@ -14,7 +14,7 @@ interface ZkaptchaContextProps {
   setCaptchaData: React.Dispatch<React.SetStateAction<CaptchaObject | null>>;
 }
 
-export const ZkaptchaContext = React.createContext<ZkaptchaContextProps>(
+const ZkaptchaContext = React.createContext<ZkaptchaContextProps>(
   {} as any
 );
 
