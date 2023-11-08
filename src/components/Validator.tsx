@@ -103,9 +103,9 @@ function Validator() {
                 className="group relative w-full flex justify-center py-2 px-2 border border-transparent text-sm font-md rounded-md text-white bg-absinthe-green hover:bg-absinthe-green-dark" 
                 onClick={
                   () => {
-                    if (zc.proofResponse) {
+                    if (zc.proofResponse && zc.signer) {
                       const { _proof, _pubSignals } = JSON.parse(proofToSolidityCalldata(zc.proofResponse.proof, zc.proofResponse.publicSignals))
-                      submitTransaction(_proof, _pubSignals)
+                      submitTransaction(_proof, _pubSignals, zc.signer)
                     } else {
                       throw new Error("No proof response")
                     }
