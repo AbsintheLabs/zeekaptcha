@@ -10,7 +10,7 @@ interface ZkaptchaContextProps {
   setProofResponse: React.Dispatch<React.SetStateAction<ProofResponse | null>>;
   captchaData: CaptchaObject | null;
   setCaptchaData: React.Dispatch<React.SetStateAction<CaptchaObject | null>>;
-  signer: ethers.Signer | null;
+//   signer: ethers.Signer | null;
 }
 
 const ZkaptchaContext = React.createContext<ZkaptchaContextProps>(

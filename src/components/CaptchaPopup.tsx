@@ -4,12 +4,14 @@ import { ethers } from 'ethers';
 import { ValidatorState } from './Validator.js';
 import { PlonkProof, PublicSignals } from 'snarkjs';
 import { Q_FIELD_SIZE } from '../utils/constants.js';
+import { GrRefresh } from 'react-icons/gr';
 
 interface CaptchaPopupProps {
   onClose: () => void;
   captchaData: CaptchaObject | null;
   setProofResponse: React.Dispatch<React.SetStateAction<ProofResponse | null>>;
   setValidatorState: React.Dispatch<React.SetStateAction<ValidatorState>>;
+fetchCaptchaFunction: (fromRefresh: boolean) => void;
 }
 
 export interface CaptchaObject {
@@ -36,6 +38,7 @@ const CaptchaPopup: React.FC<CaptchaPopupProps> = ({
   onClose,
   setValidatorState,
   setProofResponse,
+  fetchCaptchaFunction,
 }) => {
 
   // fixme: replace this with the actual address
@@ -75,7 +78,7 @@ const CaptchaPopup: React.FC<CaptchaPopupProps> = ({
         // close the popup
         onClose();
         // set the validator state to success
-        setValidatorState(ValidatorState.Success);
+        setValidatorState(ValidatorState.Prover);
         // set the proof response
         setProofResponse({ proof, publicSignals });
         // console.log(proofResult)
@@ -112,12 +115,21 @@ const CaptchaPopup: React.FC<CaptchaPopupProps> = ({
           className="flex flex-col space-y-4 w-full"
           onSubmit={handleSolutionInput}
         >
-          <input
-            required
-            autoFocus={true}
-            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
-            placeholder="Solution"
-          />
+          <div className='flex justify-between items-center'>
+            <input
+              required
+              autoFocus={true}
+              className="justify-left appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+              placeholder="Solution"
+            />
+            <button 
+            type='button' 
+            className='p-2 ml-2'
+            onClick={() => {fetchCaptchaFunction(true)}}
+            >
+              <GrRefresh />
+            </button>
+          </div>
           <button
             type="submit"
             className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-absinthe-green hover:bg-absinthe-green-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-absinthe-green-light"

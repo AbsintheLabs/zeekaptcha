@@ -5,13 +5,14 @@ import { ProofResponse, CaptchaObject } from './components/CaptchaPopup';
 import snarkjsencoded from '../assets/snarkjs.min.js';
 export { getEvents } from './utils/transaction';
 import ZkaptchaContext from './components/ZkaptchaContext';
-import { ethers } from 'ethers';
+// import { ethers } from 'ethers';
 
-interface zeekaptchaProps {
-  signer: ethers.Signer;
-}
+// interface zeekaptchaProps {
+//   signer: ethers.Signer;
+// }
 
-const Zeekaptcha: React.FC<zeekaptchaProps> = ( { signer }: zeekaptchaProps) => {
+// const Zeekaptcha: React.FC<zeekaptchaProps> = ( { signer }: zeekaptchaProps) => {
+const Zeekaptcha: React.FC = () => {
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -34,9 +35,9 @@ const Zeekaptcha: React.FC<zeekaptchaProps> = ( { signer }: zeekaptchaProps) => 
 
   const [captchaData, setCaptchaData] = React.useState<CaptchaObject | null>(null);
 
-  if (signer === null) {
-    throw new Error("Signer is null")
-  }
+  // if (signer === null) {
+  //   throw new Error("Signer is null")
+  // }
 
   return (
       <ZkaptchaContext.Provider
@@ -47,7 +48,7 @@ const Zeekaptcha: React.FC<zeekaptchaProps> = ( { signer }: zeekaptchaProps) => 
           setProofResponse,
           captchaData,
           setCaptchaData,
-          signer
+          // signer
         }}
       >
         <Validator />

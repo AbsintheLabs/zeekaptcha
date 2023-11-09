@@ -14,6 +14,8 @@ export enum ValidatorState {
   Error,
   Success,
   Idle,
+  Prover,
+  Submitting
 }
 
 function Validator() {
@@ -27,8 +29,11 @@ function Validator() {
     setShowPopup(false);
   };
 
-  const fetchCaptcha = () => {
-    if (captchaData !== null) return;
+  const fetchCaptcha = (fromRefresh: boolean = false) => {
+    if (!fromRefresh) {
+      if (captchaData !== null) return;
+    }
+    setCaptchaData(null);
     fetch(DEFAULT_CAPTCHA_ENDPOINT)
       .then(response => {
         if (!response.ok) {
@@ -93,29 +98,51 @@ function Validator() {
               <span>Verifying</span>
             </>
           )}
-          {/* success */}
-          {zc.validatorState === ValidatorState.Success && (
+
+          {zc.validatorState === ValidatorState.Submitting && (
             <>
-              <ImCheckmark color="#22CA80" />
+              <Spinner />
+              <span>Submitting</span>
+            </>
+          )}
+
+          {/* prover */}
+          {zc.validatorState === ValidatorState.Prover && (
+            <>
+              {/* <ImCheckmark color="#22CA80" /> */}
               {/* <span>Success!</span> */}
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-2 border border-transparent text-sm font-md rounded-md text-white bg-absinthe-green hover:bg-absinthe-green-dark" 
+                className="group relative w-full flex justify-center py-2 px-2 border border-transparent text-sm font-md rounded-md text-white bg-absinthe-green hover:bg-absinthe-green-dark"
                 onClick={
-                  () => {
-                    if (zc.proofResponse && zc.signer) {
-                      const { _proof, _pubSignals } = JSON.parse(proofToSolidityCalldata(zc.proofResponse.proof, zc.proofResponse.publicSignals))
-                      submitTransaction(_proof, _pubSignals, zc.signer)
+                  async () => {
+                    if (zc.proofResponse) {
+                      try {
+                        const { _proof, _pubSignals } = JSON.parse(proofToSolidityCalldata(zc.proofResponse.proof, zc.proofResponse.publicSignals))
+                        zc.setValidatorState(ValidatorState.Submitting)
+                        await submitTransaction(_proof, _pubSignals)
+                        zc.setValidatorState(ValidatorState.Success)
+                      } catch (error) {
+                        zc.setValidatorState(ValidatorState.Error)
+                      }
                     } else {
                       throw new Error("No proof response")
                     }
                   }
                 }
               >
-              Submit Proof
+                Submit Proof
               </button>
             </>
-          )} 
+          )}
+
+          {zc.validatorState === ValidatorState.Success && (
+            <>
+              <ImCheckmark color="#22CA80" />
+              <span>Success!</span>
+            </>
+          )}
+
           {/* error */}
           {zc.validatorState === ValidatorState.Error && (
             <>
@@ -131,12 +158,10 @@ function Validator() {
               onClose={handlePopupClose}
               setProofResponse={zc.setProofResponse}
               setValidatorState={zc.setValidatorState}
+              fetchCaptchaFunction={fetchCaptcha}
             />
           )}
-          {/* {!isLoading && !error && data && <ImCheckmark color="#22CA80" />}
-          {!isLoading && error && !data && <ImCross color="#F87171" />} */}
         </div>
-        <div className=""></div>
       </div>
 
       {/* rhs */}
