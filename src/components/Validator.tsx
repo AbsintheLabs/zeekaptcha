@@ -51,15 +51,15 @@ function Validator() {
   };
 
   return (
-    <div className="grid grid-cols-2 bg-gray-100 border border-gray-300 text-black h-20 p-3 shadow-lg w-80 dark:bg-gray-700 dark:border-gray-800 dark:shadow-none dark:text-white">
+    <div className="ztw-grid ztw-grid-cols-2 ztw-bg-gray-100 ztw-border ztw-border-gray-300 ztw-text-black ztw-h-14 ztw-p-3 ztw-shadow-lg ztw-w-80 dark:ztw-bg-gray-700 dark:ztw-border-gray-800 dark:ztw-shadow-none dark:ztw-text-white">
       {/* lhs */}
-      <div className="flex items-center justify-start space-x-2">
-        <div className="relative flex items-center justify-center space-x-3">
+      <div className="ztw-flex ztw-items-center ztw-justify-start ztw-space-x-2">
+        <div className="ztw-relative ztw-flex ztw-items-center ztw-justify-center ztw-space-x-3">
           {/* captcha button */}
           {zc.validatorState === ValidatorState.Idle && (
             <>
               <button
-                className="p-3.5 border border-gray-500 bg-gray-50 rounded-sm"
+                className="ztw-p-3.5 ztw-border ztw-border-gray-500 ztw-bg-gray-50 ztw-rounded-sm"
                 onClick={() => {
                   fetchCaptcha();
                   setShowPopup(true);
@@ -70,7 +70,7 @@ function Validator() {
               {/* {isDisconnected && (
                 <>
                   <button
-                    className="p-3.5 border border-gray-500 bg-gray-50 rounded-sm"
+                    className="p-3.5 ztw-border ztw-border-gray-500 ztw-bg-gray-50 ztw-rounded-sm"
                     disabled={true}
                   />
                   <span>Verify</span>
@@ -80,7 +80,7 @@ function Validator() {
               {/* {isConnected && (
                 <>
                   <button
-                    className="p-3.5 border border-gray-500 bg-gray-50 rounded-sm"
+                    className="p-3.5 ztw-border ztw-border-gray-500 ztw-bg-gray-50 ztw-rounded-sm"
                     onClick={() => {
                       fetchCaptcha();
                       setShowPopup(true);
@@ -109,11 +109,11 @@ function Validator() {
           {/* prover */}
           {zc.validatorState === ValidatorState.Prover && (
             <>
-              {/* <ImCheckmark color="#22CA80" /> */}
+              {/* <ImCheckmark ztw-color="#22CA80" /> */}
               {/* <span>Success!</span> */}
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-2 border border-transparent text-sm font-md rounded-md text-white bg-absinthe-green hover:bg-absinthe-green-dark"
+                className="ztw-group ztw-relative ztw-w-full ztw-flex ztw-justify-center ztw-py-2 ztw-px-2 ztw-border ztw-border-transparent ztw-text-sm ztw-font-md ztw-rounded-md ztw-text-white ztw-bg-absinthe-green hover:bg-absinthe-green-dark"
                 onClick={
                   async () => {
                     if (zc.proofResponse) {
@@ -165,22 +165,24 @@ function Validator() {
       </div>
 
       {/* rhs */}
-      <div className="flex justify-center items-center">
-        <div className="text-center">
+      <div className="ztw-flex ztw-justify-center ztw-items-center">
+        <div className="ztw-text-center">
           <a
             href="https://absinthelabs.xyz"
             target="_blank"
             rel="noopener noreferrer"
+            className=''
           >
-            <img src={absintheLogo} alt="logo" className="mx-auto" />
+            {/* todo: figure out a better way to do image height */}
+            <img src={absintheLogo} alt="logo" className="ztw-mx-auto ztw-h-8" />
           </a>
-          <div className="text-xs">
+          <div className="ztw-text-xs">
             {/* todo: put anchor links to the privacy and terms links */}
-            <a className="hover:text-gray-500" href="">
+            <a className="ztw-text-black hover:ztw-text-gray-500" href="">
               Privacy
             </a>{' '}
             -{' '}
-            <a className="hover:text-gray-500" href="">
+            <a className="ztw-text-black hover:ztw-text-gray-500" href="">
               Terms
             </a>
           </div>

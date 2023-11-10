@@ -27,8 +27,8 @@ export interface ProofResponse {
 
 const LoadingImage: React.FC = () => {
   return (
-    <div role="status" className="flex space-y-8 w-full animate-pulse">
-      <div className="flex items-center justify-center w-full h-20 bg-gray-300 rounded sm:w-96 dark:bg-gray-700"></div>
+    <div role="status" className="ztw-flex ztw-space-y-8 ztw-w-full ztw-animate-pulse">
+      <div className="ztw-flex ztw-items-center ztw-justify-center ztw-w-full ztw-h-20 ztw-bg-gray-300 ztw-rounded sm:ztw-w-96 dark:ztw-bg-gray-700"></div>
     </div>
   );
 };
@@ -102,29 +102,29 @@ const CaptchaPopup: React.FC<CaptchaPopupProps> = ({
 
   return (
     <div id="popupContainer">
-      <div className="absolute top-14 left-0 transform -translate-y-full translate-x-2 text-white">
+      <div className="ztw-absolute ztw-top-14 ztw-left-0 ztw-transform -ztw-translate-y-full ztw-translate-x-2 ztw-text-white">
         &#9650;
       </div>
       <div
-        className="absolute flex flex-col justify-center items-center top-0 z-20 left-0 mt-12 p-4 border-b border-r border-l border-gray-200 bg-white rounded shadow-xl space-y-4"
+        className="ztw-absolute ztw-flex ztw-flex-col ztw-justify-center ztw-items-center ztw-top-0 ztw-z-20 ztw-left-0 ztw-mt-12 ztw-p-4 ztw-border-b ztw-border-r ztw-border-l ztw-border-gray-200 ztw-bg-white ztw-rounded ztw-shadow-xl ztw-space-y-4"
         style={{ width: '300px' }}
       >
         {!captchaData && <LoadingImage />}
         {captchaData && <img src={captchaData.image} alt="Captcha Image" />}
         <form
-          className="flex flex-col space-y-4 w-full"
+          className="ztw-flex ztw-flex-col ztw-space-y-4 ztw-w-full"
           onSubmit={handleSolutionInput}
         >
-          <div className='flex justify-between items-center'>
+          <div className='ztw-flex ztw-justify-between ztw-items-center'>
             <input
               required
               autoFocus={true}
-              className="justify-left appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+              className="ztw-justify-left ztw-appearance-none ztw-rounded-none ztw-relative ztw-block ztw-w-full ztw-px-3 ztw-py-2 ztw-border ztw-border-gray-300 ztw-placeholder-gray-500 ztw-text-gray-900 ztw-rounded-t-md focus:ztw-outline-none focus:ztw-ring-green-500 focus:ztw-border-green-500 focus:ztw-z-10 sm:ztw-text-sm"
               placeholder="Solution"
             />
             <button 
             type='button' 
-            className='p-2 ml-2'
+            className='ztw-p-2 ztw-ml-2'
             onClick={() => {fetchCaptchaFunction(true)}}
             >
               <GrRefresh />
@@ -132,7 +132,7 @@ const CaptchaPopup: React.FC<CaptchaPopupProps> = ({
           </div>
           <button
             type="submit"
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-absinthe-green hover:bg-absinthe-green-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-absinthe-green-light"
+            className="ztw-group ztw-relative ztw-w-full ztw-flex ztw-justify-center ztw-py-2 ztw-px-4 ztw-border ztw-border-transparent ztw-text-sm ztw-font-medium ztw-rounded-md ztw-text-white ztw-bg-absinthe-green hover:ztw-bg-absinthe-green-dark focus:ztw-outline-none focus:ztw-ring-2 focus:ztw-ring-offset-2 focus:ztw-ring-absinthe-green-light"
           >
             ZK-Prove
           </button>
