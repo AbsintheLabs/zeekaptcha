@@ -40,7 +40,6 @@ const Zeekaptcha: React.FC = () => {
   // }
 
   return (
-    <div className='ztw-flex ztw-justify-center ztw-items-center'>
       <ZkaptchaContext.Provider
         value={{
           validatorState,
@@ -54,7 +53,6 @@ const Zeekaptcha: React.FC = () => {
       >
         <Validator />
       </ZkaptchaContext.Provider>
-    </div>
   )
 }
 

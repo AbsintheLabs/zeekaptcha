@@ -6,7 +6,7 @@
 
 <p align="center" style="font-size: 2em; margin-top: 0.67em; margin-bottom: 0.67em; font-weight: bold;">Zeekaptcha</p>
 <!-- <h1 align="center" style="text-decoration: none;">Zeekaptcha</h1> -->
-<h2 align="center">On-Chain Sybil Protection Without Churn</h2>
+<h2 align="center">On-Chain Reputation and Sybil Protection</h2>
 <br>
 
 <p align="center">
@@ -59,7 +59,7 @@ You can find the [documentation here!](https://absinthelabs.gitbook.io/zkaptcha/
 
 The docs are the best starting point as they give context for Zeekaptcha, go into how it works, and provide details on getting started. 
 
-## Compatibility
+## Technology Overview 
 Quick overview of the stack:
 
 - Circom: Generates zero-knowledge proofs for proving correct solutions to the captchas

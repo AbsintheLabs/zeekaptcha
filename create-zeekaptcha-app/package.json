@@ -1,0 +1,15 @@
+{
+  "name": "create-zeekaptcha-app",
+  "version": "1.0.0",
+  "description": "Easily create a vite Typescript app with the Zeekaptcha component",
+  "main": "index.js",
+  "bin": {
+    "create-zeekaptcha-app": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

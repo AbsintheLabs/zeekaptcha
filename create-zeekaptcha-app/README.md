@@ -1,0 +1,1 @@
+Run `npx create-zeekaptcha-app <myAppName>` to get started
