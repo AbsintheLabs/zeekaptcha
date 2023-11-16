@@ -24,7 +24,7 @@
         <img src="https://img.shields.io/twitter/follow/absinthe_labs?style=social&logo=twitter" alt="follow on Twitter">
         </a>
     <a href="https://www.absinthelabs.xyz/"> <img alt="AbsintheLabs website" src="https://img.shields.io/badge/website-absinthelabs.xyz-red"></a>
-    <a href="https://github.com/bacalhau-project/bacalhau/blob/dev/LICENSE" alt="Contributors">
+    <a href="" alt="Contributors">
         <img src="https://img.shields.io/badge/license-GNU GPL-green" />
       </a>
       <a href=https://www.npmjs.com/package/zeekaptcha> <img alt="npm" src="https://img.shields.io/npm/dt/zeekaptcha.svg"/> </a>
