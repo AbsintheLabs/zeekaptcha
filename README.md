@@ -26,12 +26,13 @@
     <a href="https://www.absinthelabs.xyz/"> <img alt="AbsintheLabs website" src="https://img.shields.io/badge/website-absinthelabs.xyz-red"></a>
     <a href="https://github.com/bacalhau-project/bacalhau/blob/dev/LICENSE" alt="Contributors">
         <img src="https://img.shields.io/badge/license-GNU GPL-green" />
-        </a>
+      </a>
+      <a href=https://www.npmjs.com/package/zeekaptcha> <img alt="npm" src="https://img.shields.io/npm/dt/zeekaptcha.svg"/> </a>
 </p>
 
 Zeekaptcha is the world’s first Web3 captcha. Unlike Web2 captchas, the verification is done in a smart contract enabling on-chain reputation, bot-resistant smart contract applications, and more.
 
-Experience Zeekaptcha in action and claim some free Goerli ETH through our fully [on-chain bot protected faucet](https://drops.absinthelabs.xyz).
+<!-- Experience Zeekaptcha in action and claim some free Goerli ETH through our fully [on-chain bot protected faucet](https://drops.absinthelabs.xyz). -->
 
 We have a vibrant community of developers helping each other in [our Telegram group](https://t.me/absinthelabs). Join us!
 
@@ -62,12 +63,12 @@ The docs are the best starting point as they give context for Zeekaptcha, go int
 ## Technology Overview 
 Quick overview of the stack:
 
-- Circom: Generates zero-knowledge proofs for proving correct solutions to the captchas
-- React: Leverages React for efficient UI state management.
+- Circom: Generates zero-knowledge proofs for proving correct solutions to the captchas.
+- React: Efficient UI state management.
 - Tailwind CSS: Employs Tailwind CSS for sleek and responsive design.
 - API Integration: Challenges are fetched dynamically via a dedicated API. These challenges get recycled every 2 minutes.
-- ethers.js: Creating the transaction to attest the captcha on-chain
+- ethers.js: Creating the transaction to attest the captcha on-chain.
 
 ## Support
 
-If you encounter any problems or have suggestions, please file an issue on the GitHub repository or [reach out to us on Telegram](https://t.me/absinthelabs).
+If you encounter any problems or have suggestions, please file an issue in the repo or [reach out to us on Telegram](https://t.me/absinthelabs).
