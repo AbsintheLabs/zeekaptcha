@@ -56,7 +56,7 @@ To query blockchain events, import the `getEvents(address: string)` function to 
 
 ## Documentation
 
-You can find the [documentation here!](https://absinthelabs.gitbook.io/zkaptcha/)
+You can find the [documentation here!](https://absinthelabs.gitbook.io/absinthe-protect)
 
 The docs are the best starting point as they give context for Zeekaptcha, go into how it works, and provide details on getting started. 
 

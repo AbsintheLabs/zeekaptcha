@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   prefix: 'ztw-',
+  important: true,
   content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   theme: {
     extend: {

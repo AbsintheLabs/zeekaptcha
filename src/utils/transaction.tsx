@@ -29,7 +29,7 @@ export const submitTransaction = async (_proof: string[], _pubSignals: string[])
         const tx = await contract.verifyProof(_proof, _pubSignals, { gasLimit: 350000 });
         // Wait for the transaction to be mined
         const receipt = await tx.wait();
-        console.log(receipt.hash); // Log the transaction hash
+        console.log(`Tx Confirmed: https://sepolia.etherscan.io/tx/${receipt.hash}`);
 
         // Return the receipt once the transaction is confirmed
         return true;

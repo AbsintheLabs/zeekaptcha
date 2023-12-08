@@ -52,7 +52,7 @@ function Validator() {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="ztw-grid ztw-grid-cols-2 ztw-bg-gray-100 ztw-border ztw-border-gray-300 ztw-text-black ztw-h-14 ztw-p-3 ztw-shadow-lg ztw-w-80 dark:ztw-bg-gray-700 dark:ztw-border-gray-800 dark:ztw-shadow-none dark:ztw-text-white">
+      <div className="ztw-grid ztw-grid-cols-2 ztw-bg-gray-100 ztw-border ztw-border-gray-300 ztw-text-black ztw-h-20 ztw-p-3 ztw-shadow-lg ztw-w-80 dark:ztw-bg-gray-700 dark:ztw-border-gray-800 dark:ztw-shadow-none dark:ztw-text-white">
         {/* lhs */}
         <div className="ztw-flex ztw-items-center ztw-justify-start ztw-space-x-2">
           <div className="ztw-relative ztw-flex ztw-items-center ztw-justify-center ztw-space-x-3">
@@ -67,29 +67,6 @@ function Validator() {
                   }}
                 />
                 <span>Verify</span>
-                {/* disable the button when the button is not connected */}
-                {/* {isDisconnected && (
-                <>
-                  <button
-                    className="p-3.5 ztw-border ztw-border-gray-500 ztw-bg-gray-50 ztw-rounded-sm"
-                    disabled={true}
-                  />
-                  <span>Verify</span>
-                </>
-              )} */}
-                {/* enable the button when the wallet is connected */}
-                {/* {isConnected && (
-                <>
-                  <button
-                    className="p-3.5 ztw-border ztw-border-gray-500 ztw-bg-gray-50 ztw-rounded-sm"
-                    onClick={() => {
-                      fetchCaptcha();
-                      setShowPopup(true);
-                    }}
-                  />
-                  <span>Verify</span>
-                </>
-              )} */}
               </>
             )}
             {/* loading spinner */}
@@ -110,8 +87,6 @@ function Validator() {
             {/* prover */}
             {zc.validatorState === ValidatorState.Prover && (
               <>
-                {/* <ImCheckmark ztw-color="#22CA80" /> */}
-                {/* <span>Success!</span> */}
                 <button
                   type="submit"
                   className="ztw-group ztw-relative ztw-w-full ztw-flex ztw-justify-center ztw-py-2 ztw-px-2 ztw-border ztw-border-transparent ztw-text-sm ztw-font-md ztw-rounded-md ztw-text-white ztw-bg-absinthe-green hover:bg-absinthe-green-dark"
