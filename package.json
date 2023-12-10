@@ -47,5 +47,8 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "snarkjs": "^0.7.2"
+  },
+  "dependencies": {
+    "styled-icons": "^10.47.0"
   }
 }
