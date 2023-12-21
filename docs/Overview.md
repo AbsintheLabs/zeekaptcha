@@ -151,7 +151,7 @@ generate valid challenges.
 1. **Enabling off-chain verification for a reCaptcha replacement**: If a on-chain verifier is not needed
 and an application wants a decentralized and privacy-preserving Web2 captcha, an off-chain verifier can be used.
 
-##### Prevent zkp replay attacks
+#### Prevent zkp replay attacks
 Mallory can listen to the mempool for another user's zeekaptcha verification and replay it as their own.
 The zeekaptcha zk circuit will need to be adjusted to include Alice's EOA (the sending EOA) as a public input.
 
@@ -160,7 +160,7 @@ The public input (the sending EOA address) cannot be changed without invalidatin
 Once the zkp includes this public input, the smart contract verifier
 will also be required to ensure that `msg.sender == zkp.sendingEOA`.
 
-##### Nullifiers
+#### Nullifiers
 Once a captcha is exhauted, it should not be reused again.
 
 Since the proof binary is non-deterministic (two proofs proving the same statement are NOT identical), the zeekaptcha
@@ -171,7 +171,7 @@ gets marked.
 This small cost is borne by the end-user and only collectively grows as more captchas get solved. There is no nullifier
 fee for updating the next set of captcha challenges.
 
-##### Challenge time invalidation
+#### Challenge time invalidation
 Captchas should only be valid for some time period. A reasonable period length is 2 minutes.
 
 This restriction is put into place to prevent Mallory from solving captchas, storing valid proofs, and then
@@ -182,14 +182,14 @@ block.timestamp when the captcha was updated.
 
 During the verification, we can check that no more than 2min have elapsed since the creation of that challenge.
 
-##### Support for multiple challenge generators
+#### Support for multiple challenge generators
 To increase the availability of the service, we can have any number of nodes acting as captcha generators.
 
 They will create their own merkle trees of valid challenges. When a user submits a verification and the contract
 checks the time validity, it will also vacously check that the merkle root is a valid one (if the value
 returned by the key is non-zero, it means that a node generated that root).
 
-##### Off-chain verification
+#### Off-chain verification
 Verification costs gas, and services only looking for a decentralized, open-source, and privacy-preserving
 captcha offering can do the verification off-chain.
 
