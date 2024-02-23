@@ -1,6 +1,6 @@
 {
   "name": "zeekaptcha",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -8,6 +8,7 @@
   "type": "module",
   "scripts": {
     "build": "rollup -c",
+    "dev": "rollup -c -w",
     "format": "prettier --write .",
     "check": "prettier --check ."
   },
@@ -47,5 +48,8 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "snarkjs": "^0.7.2"
+  },
+  "dependencies": {
+    "@web3modal/ethers5": "^4.0.9"
   }
 }

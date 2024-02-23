@@ -1,7 +1,6 @@
-import React from 'react';
-import { ValidatorState } from './Validator';
-import { ProofResponse, CaptchaObject } from './CaptchaPopup';
-import { ethers } from 'ethers';
+import React from "react";
+import { ValidatorState } from "./Validator";
+import { ProofResponse, CaptchaObject } from "./CaptchaPopup";
 
 interface ZkaptchaContextProps {
   validatorState: ValidatorState;
@@ -10,7 +9,7 @@ interface ZkaptchaContextProps {
   setProofResponse: React.Dispatch<React.SetStateAction<ProofResponse | null>>;
   captchaData: CaptchaObject | null;
   setCaptchaData: React.Dispatch<React.SetStateAction<CaptchaObject | null>>;
-//   signer: ethers.Signer | null;
+  address: `0x${string}` | undefined;
 }
 
 const ZkaptchaContext = React.createContext<ZkaptchaContextProps>(

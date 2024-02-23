@@ -1,35 +1,51 @@
 // Define prover function
 
-import { PlonkProof, PublicSignals, SignalValueType, ZKArtifact } from 'snarkjs';
+import {
+  PlonkProof,
+  PublicSignals,
+  SignalValueType,
+  ZKArtifact,
+} from "snarkjs";
 
-import wasmCircuit from "../../assets/preimageInstant.wasm";
-import zkey from "../../assets/preimageInstant_final.zkey";
+import wasmCircuit from "../../assets/verify.wasm";
+import zkey from "../../assets/verify.zkey";
 
 export const doProve = async (
-  EOA_Address: string,
-  response: SignalValueType,
-  provided_hash: string
+  secret: SignalValueType,
+  expectedMimc: SignalValueType,
+  root: SignalValueType,
+  sender: SignalValueType
 ) => {
   if (!window.snarkjs) {
-    throw new Error('snarkjs is not loaded yet');
+    throw new Error("snarkjs is not loaded yet");
   }
-  // console.log(wasmCircuit)
-  // console.log(zkey)
   const fetchAndDecodeBinary = async (binary: string): Promise<ZKArtifact> => {
     try {
       const response = await fetch(`data:application/wasm;base64,${binary}`);
       const buffer = await response.arrayBuffer();
-      return new Uint8Array(buffer); 
+      return new Uint8Array(buffer);
     } catch (error) {
-      console.error('Error converting Base64 to Uint8Array', error);
-      return new Uint8Array(); 
+      console.error("Error converting Base64 to Uint8Array", error);
+      return new Uint8Array();
     }
   };
   const decodedWasm = await fetchAndDecodeBinary(wasmCircuit);
   const decodedZkey = await fetchAndDecodeBinary(zkey);
-  
+
+  console.debug({
+    secret,
+    expectedMimc,
+    root,
+    sender,
+  });
+
   const { proof, publicSignals } = await window.snarkjs.plonk.fullProve(
-    { pkey: EOA_Address, response: response, provided_hash: provided_hash },
+    {
+      secret: secret,
+      expectedMimc: expectedMimc,
+      root: root,
+      sender: sender,
+    },
     decodedWasm,
     decodedZkey
   );
@@ -40,7 +56,7 @@ export const proofToSolidityCalldata = (
   proof: PlonkProof,
   publicSignals: PublicSignals
 ) => {
-  const ignoreKeys = ['protocol', 'curve'];
+  const ignoreKeys = ["protocol", "curve"];
   let resultArray = [];
 
   for (let key in proof) {
