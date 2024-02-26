@@ -11,14 +11,11 @@ import wasmCircuit from "../../assets/verify.wasm";
 import zkey from "../../assets/verify.zkey";
 
 export const doProve = async (
-  secret: SignalValueType,
-  expectedMimc: SignalValueType,
-  root: SignalValueType,
-  sender: SignalValueType
+  secret: string,
+  expectedMimc: string,
+  root: string,
+  sender: string
 ) => {
-  if (!window.snarkjs) {
-    throw new Error("snarkjs is not loaded yet");
-  }
   const fetchAndDecodeBinary = async (binary: string): Promise<ZKArtifact> => {
     try {
       const response = await fetch(`data:application/wasm;base64,${binary}`);
@@ -39,18 +36,42 @@ export const doProve = async (
     sender,
   });
 
+  const secretBigInt = stringToBigInt(secret); // use bytes from string same as in golang
+  const expectedMimcBigInt = BigInt("0x" + expectedMimc); // use hex string
+  const rootBigInt = BigInt(root); // use hex string
+  const senderBigInt = BigInt(sender); // use hex string
+
+  console.debug({
+    secretBigInt,
+    expectedMimcBigInt,
+    rootBigInt,
+    senderBigInt,
+  });
+
   const { proof, publicSignals } = await window.snarkjs.plonk.fullProve(
     {
-      secret: secret,
-      expectedMimc: expectedMimc,
-      root: root,
-      sender: sender,
+      secret: secretBigInt.toString(10),
+      expectedMimc: expectedMimcBigInt.toString(10),
+      root: rootBigInt.toString(10),
+      sender: senderBigInt.toString(10),
     },
     decodedWasm,
     decodedZkey
   );
   return { proof, publicSignals };
 };
+
+// @todo move to utils and add docstring
+// this func does same result as in golang:
+// captcha/builder.go:71 :: new(big.Int).SetBytes([]byte(str))
+function stringToBigInt(str: string): BigInt {
+  let bigInt = BigInt(0);
+  for (let i = 0; i < str.length; i++) {
+    const charCode = str.charCodeAt(i);
+    bigInt = (bigInt << BigInt(8)) | BigInt(charCode);
+  }
+  return bigInt;
+}
 
 export const proofToSolidityCalldata = (
   proof: PlonkProof,
