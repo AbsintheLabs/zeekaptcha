@@ -1,6 +1,7 @@
 import React from "react";
 import { ValidatorState } from "./Validator";
 import { ProofResponse, CaptchaObject } from "./CaptchaPopup";
+import { Eip1193Provider } from "ethers";
 
 interface ZkaptchaContextProps {
   validatorState: ValidatorState;
@@ -10,6 +11,7 @@ interface ZkaptchaContextProps {
   captchaData: CaptchaObject | null;
   setCaptchaData: React.Dispatch<React.SetStateAction<CaptchaObject | null>>;
   address: `0x${string}` | undefined;
+  provider: Eip1193Provider | undefined;
 }
 
 const ZkaptchaContext = React.createContext<ZkaptchaContextProps>(
