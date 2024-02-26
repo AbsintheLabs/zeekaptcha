@@ -6,7 +6,7 @@ import ZkaptchaContext from "./ZkaptchaContext";
 import { DEFAULT_CAPTCHA_ENDPOINT } from "../utils/constants";
 import { CaptchaObject } from "./CaptchaPopup";
 import absintheLogo from "../../assets/absintheLogo.png";
-import { getEvents, submitTransaction } from "../utils/transaction";
+import { verifyTransaction } from "../utils/transaction";
 import { proofToSolidityCalldata } from "../utils/prover";
 
 export enum ValidatorState {
@@ -30,7 +30,6 @@ function Validator() {
   };
 
   const fetchCaptcha = (fromRefresh: boolean = false) => {
-    console.debug("fetching captcha");
     if (!fromRefresh) {
       if (captchaData !== null) return;
     }
@@ -104,7 +103,11 @@ function Validator() {
                           )
                         );
                         zc.setValidatorState(ValidatorState.Submitting);
-                        await submitTransaction(_proof, _pubSignals);
+                        await verifyTransaction(
+                          zc.provider!,
+                          _proof,
+                          _pubSignals
+                        );
                         zc.setValidatorState(ValidatorState.Success);
                       } catch (error) {
                         zc.setValidatorState(ValidatorState.Error);
