@@ -1,9 +1,7 @@
 import React, { useState, useEffect, FormEvent } from "react";
 import { doProve, proofToSolidityCalldata } from "../utils/prover.js";
-import { ethers } from "ethers";
 import { ValidatorState } from "./Validator.js";
 import { PlonkProof, PublicSignals } from "snarkjs";
-import { Q_FIELD_SIZE } from "../utils/constants.js";
 import { GrRefresh } from "react-icons/gr";
 import ZkaptchaContext from "./ZkaptchaContext.js";
 import { shortenCryptoAddress } from "../utils/address.js";
@@ -57,16 +55,21 @@ const CaptchaPopup: React.FC<CaptchaPopupProps> = ({
 
   // todo: return the proof/public signals and or the error associated with it
   const handleSolutionInput = async (event: FormEvent) => {
-    console.debug("Handling solution input");
     event.preventDefault();
     const inputValue = (
       (event.target as HTMLFormElement).elements[0] as HTMLInputElement
     ).value;
 
     if (captchaData && zc.address) {
-      console.debug("IN");
+      console.debug("INX");
       setValidatorState(ValidatorState.Loading);
       try {
+        // @dev tests ### remove later
+
+        if (!window.snarkjs) {
+          throw new Error("snarkjs is not loaded yet");
+        }
+
         const { proof, publicSignals }: any = await doProve(
           inputValue,
           captchaData.mimcHash,
