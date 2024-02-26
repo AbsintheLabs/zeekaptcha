@@ -3,15 +3,17 @@ import "./index.css";
 import Validator, { ValidatorState } from "./components/Validator";
 import { ProofResponse, CaptchaObject } from "./components/CaptchaPopup";
 import snarkjsencoded from "../assets/snarkjs.min.js";
-export { getEvents } from "./utils/transaction";
 import ZkaptchaContext from "./components/ZkaptchaContext";
-//
+import { Eip1193Provider } from "ethers";
+
 interface zeekaptchaProps {
   address: `0x${string}` | undefined;
+  provider: Eip1193Provider | undefined;
 }
 
 const Zeekaptcha: React.FC<zeekaptchaProps> = ({
   address,
+  provider,
 }: zeekaptchaProps) => {
   useEffect(() => {
     const script = document.createElement("script");
@@ -19,7 +21,6 @@ const Zeekaptcha: React.FC<zeekaptchaProps> = ({
     script.textContent = snarkjs;
 
     document.body.appendChild(script);
-
     // Cleanup the script when the component unmounts
     return () => {
       document.body.removeChild(script);
@@ -50,11 +51,11 @@ const Zeekaptcha: React.FC<zeekaptchaProps> = ({
         captchaData,
         setCaptchaData,
         address,
+        provider,
       }}
     >
       <Validator />
     </ZkaptchaContext.Provider>
   );
 };
-
 export default Zeekaptcha;
